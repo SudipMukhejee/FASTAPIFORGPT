@@ -135,12 +135,39 @@ uvicorn api_gateway:app --host 0.0.0.0 --port 80
 Step 5: Set Up a Reverse Proxy (Optional)
 To improve security and scalability, you can set up a reverse proxy using NGINX:
 
-Install NGINX:
+### Install NGINX:
 
 bash
 Copy code
 ```
-sudo amazon-linux-extras install nginx1.12
+sudo apt update
+sudo apt install nginx
+```
+### Create reverse proxy
+```
+sudo rm sudo vi /etc/nginx/nginx.conf
+sudo vi /etc/nginx/nginx.conf
+```
+```
+events {
+    # Event directives...
+}
+
+http {
+	server {
+    listen 80;
+    server_name be1.100xdevs.com;
+
+    location / {
+        proxy_pass http://localhost:8080;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+	}
+}
 ```
 Configure NGINX to forward requests to Uvicorn:
 
