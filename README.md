@@ -8,6 +8,24 @@ This FastAPI application enables users to upload PDF files and ask questions abo
 - LLM Integration: Uses the Ollama language model for generating human-like responses.
 - Efficient Search: Implements FAISS vector stores for fast and accurate document retrieval.
 - Cross-Origin Resource Sharing (CORS): Enabled for broader API accessibility.
+# API Endpoints
+- ` POST /ask `: Accepts a question in the request body and a PDF file (optional) to process and generate an answer.
+- Request Body:
+    ```
+    {
+  "question": "What is Claude 3?"
+    }
+
+    ```
+- Response
+  ```
+  {
+  "question": "What is Claude 3?",
+  "answer": "Claude 3 is the latest Conversational AI Model from Anthropic."
+  }
+
+  ```
+
 ## Installation
 ### Prerequisites
 Ensure you have Python 3.8+ installed on your machine. You will also need pip for managing Python packages.
